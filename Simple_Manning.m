@@ -64,4 +64,6 @@ a4 = [0.5*(b-a) y] ;
 coor = [a1 ; a2; a3; a4] ;  
 patch(coor(:,1), coor(:,2),'cyan')
 
-title('Channel Cross Section using normal depth')
+title('Channel Cross Section Using Normal Depth')
+xlabel('X (m)')
+ylabel('Y (m)')
