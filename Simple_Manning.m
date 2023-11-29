@@ -2,7 +2,8 @@ clc
 clear
 clf
 
-% Solves for normal depth using Manning's equation via newton's method. 
+% Solves for normal depth of a trapezoidal/rectangular cross section using 
+% Manning's equation via newton's method. 
 % --------------------------- Created by-----------------------------------
 % Logan Bayer, BS 
 % Compound Inundation Team for Resilient Applications
@@ -10,13 +11,14 @@ clf
 % Fall 2023
 
 % Channel Parameters
-b = 10; % m
-z = 4; % side slope
-Q = 5; % cms
-n = 0.025; % mannings roughness
+b = 1; % m
+z = 3; % side slope
+Q = 2; % cms
+n = 0.011; % mannings roughness
 Phi = 1; % phi = 1 if working in meters and 1.49 if working in feet
-So = 0.02;
+So = 0.002;
 Fb = 0.2;
+g = 9.81;
 
 % Iterate to find a solution for water depth using Newton's method
 y = 10;
@@ -42,6 +44,10 @@ while abs(LHS-RHS) > tol
         error('maximum iteration reached without convergence')
     end
 end
+
+% Froude Number
+T = b+(2*z*y);
+Fr = Q/sqrt(g*((A^3)/T));
 
 % After convergence, display the solution and plot the channel cross section:
 fprintf('y = %d m \n ',y);
